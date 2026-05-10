@@ -54,7 +54,7 @@
         { "controller.render.player.third_person": "!variable.is_first_person && !variable.map_face_icon && !query.is_spectator" },
         { "controller.render.player.map": "variable.map_face_icon" },
 
-        { "controller.render.vought.homelander": "return 1.0;" }
+        { "controller.render.vought.homelander": "1.0;" }
       ],
       "enable_attachables": true
     }
