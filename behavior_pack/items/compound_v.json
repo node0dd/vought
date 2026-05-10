@@ -1,0 +1,35 @@
+{
+  "format_version": "1.20.50",
+  "minecraft:item": {
+    "description": {
+      "identifier": "vought:compound_v",
+      "category": "Items"
+    },
+
+    "components": {
+      "minecraft:icon": {
+        "texture": "compound_v"
+      },
+      "minecraft:display_name": {
+        "value": "%item.compound_v.name\n%item.compound_v.description"
+      },
+      "minecraft:use_modifiers": {
+        "movement_modifier": 0.25,
+        "use_duration": 256.0
+      },
+      "minecraft:tags": {
+        "tags": ["vought:compound_v"]
+      },
+      "minecraft:rarity": {
+        "minecraft:rarity": "rare"
+      },
+      "minecraft:use_animation": "none",
+      "minecraft:max_stack_size": 1,
+      "minecraft:can_destroy_in_creative": false,
+      "minecraft:bundle_interaction": {
+        "num_viewable_slots": 1
+      },
+      "minecraft:hover_text_color": "material_lapis"
+    }
+  }
+}

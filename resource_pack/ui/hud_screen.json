@@ -1,0 +1,11 @@
+{
+  "namespace": "hud",
+
+  "hud_player_renderer": {
+    "ignored": true
+  },
+
+  "player_position": {
+    "ignored": false
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "format_version": 2,
+  "header": {
+    "description": "vought script pack",
+    "name": "vought script pack",
+    "uuid": "00000000-000f-4096-1193-00000000000f",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 21, 0]
+  },
+  "modules": [
+    {
+      "description": "vought script pack",
+      "type": "data",
+      "uuid": "00000000-000f-4096-1193-000000000000",
+      "version": [1, 0, 0]
+    }
+  ]
+}

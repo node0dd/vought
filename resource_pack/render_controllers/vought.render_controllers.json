@@ -1,0 +1,10 @@
+{
+  "format_version": "1.10.0",
+  "render_controllers": {
+    "controller.render.vought.homelander": {
+      "geometry": "geometry.custom",
+      "materials": [{ "*": "material.default" }],
+      "textures": ["texture.homelander"]
+    }
+  }
+}

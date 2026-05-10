@@ -1,0 +1,6 @@
+{
+  "the_world_overlay": {
+    "vertexShader": "shaders/glsl/uv_fullscreen.vertex",
+    "fragmentShader": "shaders/glsl/the_world.fragment"
+  }
+}

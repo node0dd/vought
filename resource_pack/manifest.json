@@ -1,0 +1,18 @@
+{
+  "format_version": 2,
+  "header": {
+    "description": "",
+    "name": "vought resource pack",
+    "uuid": "00000000-0001-4096-1193-00000000000f",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 21, 0]
+  },
+  "modules": [
+    {
+      "description": "",
+      "type": "resources",
+      "uuid": "00000000-0001-4096-1193-000000000000",
+      "version": [1, 0, 0]
+    }
+  ]
+}

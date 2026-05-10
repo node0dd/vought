@@ -1,0 +1,114 @@
+{
+  "namespace": "vought",
+
+  "custom_layout": {
+    "type": "image",
+    "texture": "textures/ui/hud_tip_text_background",
+    "alpha": 1.0
+  },
+
+  "custom_label": {
+    "type": "label",
+    "$text|default": "",
+    "text": "$text",
+    "layer": 1,
+    "font_type": "default",
+    "font_size": "normal"
+  },
+
+  "custom_button": {
+    "type": "button",
+    "$button_name": "",
+    "$default": "",
+    "$pressed": "",
+
+    "layer": 1,
+    "propagate_alpha": true,
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "$button_name",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_ok",
+        "to_button_id": "$button_name",
+        "mapping_type": "focused"
+      }
+    ],
+
+    "prevent_touch_input": true,
+    "$button_bindings|default": [],
+    "bindings": "$button_bindings",
+    "controls": [
+      { "default@custom_layout": { "texture": "('textures/ui/'+$default)", "layer": 1 } },
+      { "pressed@custom_layout": { "texture": "('textures/ui/'+$pressed)", "alpha": 0 } }
+    ]
+  },
+
+  "button@custom_button": {
+    "$default": "default",
+    "$pressed": "pressed",
+    "size": ["20px", "20px"],
+    "alpha": 0.5
+  },
+
+  "stack_panel": {
+    "type": "panel",
+    "size": ["25%", "50%"],
+    "controls": [{ "input@input_panel": {} }]
+  },
+
+  "input_panel": {
+    "type": "input_panel",
+    "size": ["64px", "64px"],
+    "anchor_from": "bottom_right",
+    "anchor_to": "bottom_right",
+    "controls": [
+      {
+        "x_button@button": {
+          "is_handle_button_move_event": true
+        }
+      }
+    ]
+  },
+
+  "main_panel": {
+    "type": "panel",
+    "bindings": [
+      {
+        "binding_name": "#vought.update",
+        "binding_name_override": "#temp",
+        "binding_condition": "always"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#temp * 0)",
+        "target_property_name": "#visible"
+      }
+    ],
+    "controls": [{ "stack@stack_panel": {} }]
+  },
+
+  "vought_screen@hud.hud_screen": {
+    "button_mappings": [],
+    "bindings": [
+      {
+        "binding_name": "#hud_visible",
+        "binding_name_override": "#visible",
+        "binding_type": "global"
+      },
+      {
+        "binding_name": "#hud_alpha",
+        "binding_name_override": "#alpha",
+        "binding_type": "global"
+      },
+      {
+        "binding_name": "#hud_propagate_alpha",
+        "binding_name_override": "#propagateAlpha",
+        "binding_type": "global"
+      }
+    ],
+    "$screen_content": "vought.main_panel"
+  }
+}

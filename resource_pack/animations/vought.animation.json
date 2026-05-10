@@ -1,0 +1,186 @@
+{
+  "format_version": "1.10.0",
+  "animations": {
+    "animation.jojo.star_plat.setup": {
+      "loop": true,
+      "bones": {
+        "mod.root": {
+          "rotation": [0.0, "-q.body_y_rotation", 0.0]
+        },
+        "mod.location": {
+          "rotation": [0.0, "v.target_y_rotation", 0.0],
+          "position": ["(v.target_x_position - v.last_x_position) * (16.0 / 0.9375)", "(v.target_y_position - v.last_y_position) * (16.0 / 0.9375)", "(-v.target_z_position + v.last_z_position) * (16.0 / 0.9375)"]
+        },
+        "mod.waist": {
+          "rotation": ["v.pitch_rotation * 32.0", "-v.roll_rotation * 24.0", "-v.roll_rotation * 24.0"]
+        },
+        "mod.body": {
+          "rotation": [-4.0, "-v.roll_rotation * 12.0", 0.0]
+        },
+        "mod.head": {
+          "relative_to": {
+            "rotation": "entity"
+          },
+          "rotation": ["8.0 + v.target_x_rotation + v.pitch_rotation * 24.0", "-q.body_y_rotation + v.target_y_rotation", "-v.roll_rotation * 32.0"]
+        },
+        "mod.hair": {
+          "rotation": [-45.0, 0.0, 0.0]
+        },
+        "emote0": {
+          "scale": [1.25, 0.25, 1.0],
+          "position": [0.0, 0.0, -0.05],
+          "rotation": [0.0, 0.0, "4.0 + 4.0 * (v.using_action > 0.05 ? 1.0 : 0.0)"]
+        },
+        "emote1": {
+          "scale": [1.25, 0.25, 1.0],
+          "position": [0.0, 0.0, -0.05],
+          "rotation": [0.0, 0.0, "-4.0 - 4.0 * (v.using_action > 0.05 ? 1.0 : 0.0)"]
+        },
+        "mod.leftarm": {
+          "rotation": ["8.0 + v.pitch_rotation * 32.0 + v.roll_rotation * 24.0", -4.0, "-16.0 + -math.abs(v.pitch_rotation * 8.0) - v.roll_rotation * 24.0"]
+        },
+        "mod.leftsleeve": {
+          "position": [2.0, 0.0, 0.0],
+          "rotation": [0.0, 0.0, 24.0]
+        },
+        "mod.rightarm": {
+          "rotation": ["8.0 + v.pitch_rotation * 32.0 - v.roll_rotation * 24.0", 4.0, "16.0 + math.abs(v.pitch_rotation * 8.0) - v.roll_rotation * 24.0"]
+        },
+        "mod.rightsleeve": {
+          "position": [-2.0, 0.0, 0.0],
+          "rotation": [0.0, 0.0, -24.0]
+        },
+        "front_cape": {
+          "rotation": ["-4.0 + math.min(0.0, v.pitch_rotation * 24.0)", 0.0, 0.0]
+        },
+        "back_cape": {
+          "rotation": ["12.0 + math.max(0.0, v.pitch_rotation * 24.0)", 0.0, 0.0]
+        },
+        "mod.leftleg": {
+          "rotation": ["v.pitch_rotation * 24.0 - v.roll_rotation * 16.0", 0.0, "-4.0 + -math.abs(v.pitch_rotation * 4.0) - v.roll_rotation * 16.0"]
+        },
+        "mod.rightleg": {
+          "rotation": ["v.pitch_rotation * 24.0 + v.roll_rotation * 16.0", 0.0, "4.0 + math.abs(v.pitch_rotation * 4.0) - v.roll_rotation * 16.0"]
+        }
+      }
+    },
+
+    "animation.jojo.star_plat.idle": {
+      "loop": true,
+      "blend_weight": "v.idle_weight = math.lerp((v.idle_weight ?? 0.0), (1.0 - v.horizontal_speed) * (v.using_action ? 0.0 : 1.0), v.smooth); v.idle_amount = 1.0 + (1.0 + 2.5) * math.pow(v.idle_weight - 1.0, 3.0); return v.idle_amount;",
+      "anim_time_update": "return 0.0;",
+      "bones": {
+        "mod.waist": {
+          "position": [0.0, "math.cos(q.life_time * 103.2) * 0.25", 0.0]
+        },
+        "mod.body": {
+          "rotation": ["-4.0 - math.cos(q.life_time * 103.2) * 2.0", -24.0, 0.0]
+        },
+        "mod.head": {
+          "rotation": ["8.0 + math.cos(q.life_time * 103.2) * 2.0", -8.0, 2.0]
+        },
+        "mod.leftarm": {
+          "position": [0.0, "-1.0 + math.cos(q.life_time * 103.2) * 0.05", 0.0],
+          "rotation": [8.0, -12.0, "-8.0 - math.sin(q.life_time * 103.2) * 2.0"]
+        },
+        "mod.leftsleeve": {
+          "rotation": [0.0, 16.0, "4.0 - math.cos(q.life_time * 103.2) * 2.0"]
+        },
+        "mod.rightarm": {
+          "position": [0.0, "math.cos(q.life_time * 103.2) * 0.05", 0.0],
+          "rotation": [-24.0, -16.0, "16.0 + math.sin(q.life_time * 103.2) * 2.0"]
+        },
+        "mod.rightsleeve": {
+          "position": [0.0, -1.0, 0.0],
+          "rotation": [8.0, 16.0, "-16.0 + math.cos(q.life_time * 103.2) * 2.0"]
+        },
+        "front_cape": {
+          "rotation": ["-8.0 + math.sin(q.life_time * 103.2) * 4.0", 0.0, 0.0]
+        },
+        "back_cape": {
+          "rotation": ["8.0 - math.sin(q.life_time * 103.2) * 4.0", 0.0, 0.0]
+        },
+        "mod.leftleg": {
+          "rotation": ["32.0 + math.cos(q.life_time * 103.2) * 4.0", -24.0, -8.0]
+        },
+        "mod.rightleg": {
+          "position": [0.0, 0.0, -1.0],
+          "rotation": ["8.0 + math.cos(q.life_time * 103.2) * 4.0", -16.0, 4.0]
+        }
+      }
+    },
+
+    "animation.jojo.star_plat.light0": {
+      "loop": true,
+      "blend_weight": "v.light0_weight = math.lerp((v.light0_weight ?? 0.0), 1.0 - math.abs(math.mod(v.light_index, 2.0) - 1.0), v.smooth); return v.light0_weight * 1.5 - (v.light0_amount ?? 0.0) * 0.5;",
+      "anim_time_update": "v.light0_alpha = math.clamp(math.lerp(v.light0_alpha, (v.light0_weight >= 0.9375), v.smooth * 0.25), (1.0 - math.abs(math.mod(v.light_index, 2.0) - 1.0)) ? v.light0_alpha : v.light0_weight, 1.0); v.light0_amount = 1.0 + (1.0 + 2.5) * math.pow(v.light0_alpha - 1.0, 3.0) + 2.5 * math.pow(v.light0_alpha - 1.0, 2.0);",
+      "bones": {
+        "mod.main": {
+          "rotation": ["v.target_x_rotation", 0.0, 0.0]
+        },
+        "mod.waist": {
+          "scale": ["this + 0.25 * math.sin(v.light0_amount * 180.0)", "this + 0.25 * -math.sin(v.light0_amount * 180.0)", "this + 0.25 * math.sin(v.light0_amount * 180.0)"],
+          "rotation": ["math.lerp(-8.0, 12.0, v.light0_amount)", 0.0, 0.0]
+        },
+        "mod.body": {
+          "rotation": ["math.lerp(-4.0, 4.0, v.light0_amount)", "math.lerp(48.0, -24.0, v.light0_amount)", 0.0]
+        },
+        "mod.head": {
+          "rotation": ["math.lerp(0.0, 12.0, v.light0_amount)", "math.lerp(12.0, -4.0, v.light0_amount)", "-math.lerp(4.0, 2.0, v.light0_amount)"]
+        },
+        "mod.leftarm": {
+          "rotation": ["math.lerp(-32.0, 0.0, v.light0_amount)", "math.lerp(-12.0, 24.0, v.light0_amount)", "-math.lerp(24.0, 12.0, v.light0_amount)"]
+        },
+        "mod.rightarm": {
+          "scale": ["this", "this + 0.25 * v.light0_amount + 0.25 * math.sin(v.light0_amount * 180.0)", "this"],
+          "position": ["math.lerp(-1.0, 0.0, v.light0_amount)", 0.0, "math.lerp(4.0, -2.0, v.light0_amount)"],
+          "rotation": ["-math.lerp(96.0, 90.0, v.light0_amount)", "math.lerp(-16.0, 12.0, v.light0_amount)", "math.lerp(24.0, 32.0, v.light0_amount)"]
+        },
+        "front_cape": {
+          "rotation": ["-math.lerp(12.0, 24.0, v.light0_amount)", 0.0, 0.0]
+        },
+        "back_cape": {
+          "rotation": ["math.lerp(24.0, 48.0, v.light0_amount)", 0.0, 0.0]
+        },
+        "mod.leftleg": {
+          "position": [0.0, 0.0, "math.lerp(-2.0, 1.0, v.light0_amount)"],
+          "rotation": ["math.lerp(24.0, 32.0, v.light0_amount)", "math.lerp(0.0, -24.0, v.light0_amount)", "math.lerp(0.0, -8.0, v.light0_amount)"]
+        },
+        "mod.rightleg": {
+          "position": [0.0, 0.0, "math.lerp(2.0, -2.0, v.light0_amount)"],
+          "rotation": ["math.lerp(8.0, 0.0, v.light0_amount)", "math.lerp(24.0, 0.0, v.light0_amount)", 0.0]
+        }
+      }
+    },
+
+    "animation.jojo.star_plat.rush": {
+      "loop": true,
+      "blend_weight": "v.rush_weight = math.lerp((v.rush_weight ?? 0.0), v.rush_index, v.smooth); return 1.0 + (1.0 + 2.5) * math.pow(v.rush_weight - 1.0, 3.0) + 2.5 * math.pow(v.rush_weight - 1.0, 2.0);",
+      "anim_time_update": "v.rush_amount = v.rush_index ? (v.rush_amount ?? 0.0) + v.delta_time * 2048.0 : 0.0;",
+      "bones": {
+        "mod.main": {
+          "rotation": ["v.target_x_rotation * 1.0", 0.0, 0.0]
+        },
+        "mod.waist": {
+          "rotation": [4.0, "-4.0 * math.cos(v.rush_amount)", 0.0]
+        },
+        "mod.body": {
+          "rotation": [8.0, "-16.0 * math.sin(v.rush_amount)", 0.0]
+        },
+        "mod.head": {
+          "rotation": [8.0, "4.0 * math.cos(v.rush_amount)", "-math.sin(v.rush_amount)"]
+        },
+        "mod.leftarm": {
+          "scale": ["this", "1.0 + math.max(0.25 * -math.cos(v.rush_amount), 0.0)", "this"],
+          "position": [-0.5, "(-math.cos(v.rush_amount) + math.sin(v.rush_amount)) * 0.5", "8.0 * math.cos(v.rush_amount)"],
+          "rotation": ["-this - 90.0 - 8.0 * math.sin(v.rush_amount)", "8.0 + 4.0 * math.sin(v.rush_amount)", -16.0]
+        },
+        "mod.rightarm": {
+          "scale": ["this", "1.0 + math.max(0.25 * math.cos(v.rush_amount), 0.0)", "this"],
+          "position": [0.5, "(math.cos(v.rush_amount) - math.sin(v.rush_amount)) * 0.5", "-8.0 * math.cos(v.rush_amount)"],
+          "rotation": ["-this - 90.0 - 8.0 * -math.sin(v.rush_amount)", "-8.0 - 4.0 * math.sin(v.rush_amount)", 16.0]
+        }
+      }
+    }
+  }
+}

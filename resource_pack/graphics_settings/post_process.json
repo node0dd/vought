@@ -1,0 +1,102 @@
+{
+  "render_order": ["the_world"],
+  "process_array": [
+    {
+      "name": "bloom",
+      "paras": {
+        "threshold": 0.5,
+        "intensity": 1.0,
+        "radius": 1.0
+      },
+      "enable": true,
+      "pass_array": [
+        {
+          "render_target": {
+            "width": 1.0,
+            "height": 1.0
+          },
+          "material": "threashold_pick",
+          "shaderPassName": "ThreasholdPick"
+        },
+        {
+          "render_target": {
+            "width": 0.5,
+            "height": 0.5
+          },
+          "material": "daul_blur_down",
+          "shaderPassName": "DownScalePass"
+        },
+        {
+          "render_target": {
+            "width": 0.25,
+            "height": 0.25
+          },
+          "material": "daul_blur_down",
+          "shaderPassName": "DownScalePass"
+        },
+        {
+          "render_target": {
+            "width": 0.125,
+            "height": 0.125
+          },
+          "material": "daul_blur_down",
+          "shaderPassName": "DownScalePass"
+        },
+        {
+          "render_target": {
+            "width": 0.0625,
+            "height": 0.0625
+          },
+          "material": "daul_blur_down",
+          "shaderPassName": "DownScalePass"
+        },
+        {
+          "render_target": {
+            "width": 0.125,
+            "height": 0.125
+          },
+          "material": "daul_blur_up",
+          "shaderPassName": "UpScalePass"
+        },
+        {
+          "render_target": {
+            "width": 0.25,
+            "height": 0.25
+          },
+          "material": "daul_blur_up",
+          "shaderPassName": "UpScalePass"
+        },
+        {
+          "render_target": {
+            "width": 0.5,
+            "height": 0.5
+          },
+          "material": "daul_blur_up",
+          "shaderPassName": "UpScalePass"
+        },
+        {
+          "render_target": {
+            "width": 1.0,
+            "height": 1.0
+          },
+          "material": "daul_blur_up_blend",
+          "shaderPassName": "UpScalePass"
+        }
+      ]
+    },
+    {
+      "name": "the_world",
+      "enable": false,
+      "paras": [
+        { "name": "size", "value": [0.0, 0.0] },
+        { "name": "radius", "value": 0.0 },
+        { "name": "time", "value": 0.0 }
+      ],
+      "pass_array": [
+        {
+          "material": "the_world_overlay"
+        }
+      ]
+    }
+  ]
+}

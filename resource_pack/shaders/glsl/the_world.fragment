@@ -1,0 +1,70 @@
+// __multiversion__
+// This signals the loading code to prepend either #version 100 or #version 300 es as appropriate.
+
+#include "fragmentVersionCentroidUV.h"
+#include "uniformPerFrameConstants.h"
+
+LAYOUT_BINDING(0)
+uniform sampler2D TEXTURE_0;
+uniform vec4 EXTRA_VECTOR1;
+
+const float PI = 3.14159265358979323846;
+
+vec3 rgb2hsv(vec3 rgb)
+{
+    const vec4 lut4 = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
+    vec4 text = mix(vec4(rgb.bg, lut4.wz), vec4(rgb.gb, lut4.xy), step(rgb.b, rgb.g));
+    vec4 pack = mix(vec4(text.xyw, rgb.r), vec4(rgb.r, text.yzx), step(text.x, rgb.r));
+    float delta = pack.x - min(pack.w, pack.y);
+    float inv6d = 1.0 / (6.0 * delta + 1e-10);
+    vec3 hsv = vec3(abs(pack.z + (pack.w - pack.y) * inv6d), delta / (pack.x + 1e-10), pack.x);
+    return hsv;
+}
+
+vec3 hsv2rgb(vec3 hsv)
+{
+    const vec4 lut4 = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+    vec3 phase = abs(fract(hsv.xxx + lut4.xyz) * 6.0 - lut4.www);
+    return hsv.z * mix(lut4.xxx, clamp(phase - lut4.xxx, 0.0, 1.0), hsv.y);
+}
+
+void main()
+{
+    vec2 center = vec2(0.5, 0.5);
+    float width = EXTRA_VECTOR1.x;
+    float height = EXTRA_VECTOR1.y;
+
+    float radius = EXTRA_VECTOR1.z * 2.0;
+    float time = EXTRA_VECTOR1.w;
+    const float bias = 0.05;
+
+    vec2 aspect = vec2(width / max(height, 1e-6), 1.0);
+    vec2 offset = (uv - center) * aspect;
+    float dist = length(offset);
+
+    float norm = clamp(dist / max(radius, 1e-6), 0.0, 1.0);
+
+    float mask = 1.0 - smoothstep(radius - bias, radius, dist);
+
+    float text = norm * (1.0 - bias) + (norm * norm) * bias;
+    float scale = 1.0 - text;
+    vec2 lensUV = center + offset * scale / aspect;
+    lensUV = clamp(lensUV, vec2(0.0), vec2(1.0));
+
+    vec4 base = texture2D(TEXTURE_0, uv);
+    vec4 lens = texture2D(TEXTURE_0, lensUV);
+
+    vec3 hsv = rgb2hsv(lens.rgb);
+    hsv.x += 0.25 * sin(PI * 2.0 * fract(time));
+    hsv.x = fract(hsv.x);
+
+    vec3 hue = hsv2rgb(hsv);
+    float dark = 1.0 - radius * text;
+
+    vec3 color = mix(base.rgb, 1.0 - base.rgb, mask * sin(radians(time * 180.0)) * (0.5 + radius * text));
+    color = mix(color.rgb, hue * dark, mask * 0.75);
+
+    float luma = dot(base.rgb, vec3(0.299, 0.587, 0.114));
+    color = mix(color, vec3(luma), (1.0 - mask) * step(0.5, time));
+    gl_FragColor = vec4(color, base.a);
+}
