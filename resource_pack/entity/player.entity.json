@@ -42,10 +42,11 @@
           "variable.item_use_normalized = query.main_hand_item_use_duration / query.main_hand_item_max_duration;",
           "variable.riding_y_offset = query.is_riding_any_entity_of_type('minecraft:minecart', 'minecraft:boat', 'minecraft:chest_boat', 'minecraft:strider') ? -3.0 : 0.0;"
         ],
-        "animate": ["root"]
+        "animate": ["root", "setup"]
       },
       "animations": {
-        "root": "controller.animation.player.root"
+        "root": "controller.animation.player.root",
+        "setup": "animation.vought.setup"
       },
       "render_controllers": [
         { "controller.render.player.first_person_spectator": "variable.is_first_person && query.is_spectator" },

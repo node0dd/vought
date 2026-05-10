@@ -62,8 +62,8 @@
   "input_panel": {
     "type": "input_panel",
     "size": ["64px", "64px"],
-    "anchor_from": "bottom_right",
-    "anchor_to": "bottom_right",
+    "anchor_from": "bottom_middle",
+    "anchor_to": "bottom_middle",
     "controls": [
       {
         "x_button@button": {
